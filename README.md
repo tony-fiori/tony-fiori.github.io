@@ -1,2 +1,2 @@
 # tony-fiori.github.io
-Web Design and Development | Tony Fiori
+Front-End Web dev | Dorset-college
