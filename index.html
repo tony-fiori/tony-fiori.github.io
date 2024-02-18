@@ -10,6 +10,34 @@
   <div id="grid-container" class="grid-container"></div>
   <button id="add-button">Ajouter un chronomètre</button>
   <script src="script.js"></script>
+  <script>
+        // Fonction pour obtenir l'adresse IP
+        function getIPAddress(callback) {
+            // Utilisation d'une requête HTTP vers un service tiers pour obtenir l'adresse IP
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        callback(null, xhr.responseText);
+                    } else {
+                        callback(new Error('Erreur lors de la récupération de l\'adresse IP'));
+                    }
+                }
+            };
+            xhr.open('GET', 'https://api.ipify.org/?format=json', true);
+            xhr.send();
+        }
+
+        // Appel de la fonction et mise à jour de l'élément HTML approprié
+        getIPAddress(function(error, ipAddress) {
+            if (error) {
+                console.error(error);
+                document.getElementById('ipAddress').textContent = 'Erreur lors de la récupération de l\'adresse IP';
+            } else {
+                document.getElementById('ipAddress').textContent = ipAddress;
+            }
+        });
+    </script>
 </body>
 </html>
 
